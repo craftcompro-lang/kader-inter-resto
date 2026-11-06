@@ -57,7 +57,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .lang button+button::before{content:"";position:absolute;left:-1px;top:13px;bottom:13px;width:1px;background:rgba(255,255,255,.35)}
 
 .ident{position:relative;z-index:2;margin-top:-92px;padding:0 20px}
-.ident h1{font-size:68px;font-weight:900;font-stretch:76%;line-height:.86;letter-spacing:-.01em;text-transform:uppercase;overflow-wrap:anywhere}
+.ident h1{font-size:min(68px,calc((100vw - 40px) / 6.3));font-weight:900;font-stretch:76%;line-height:.86;letter-spacing:-.01em;text-transform:uppercase;overflow-wrap:anywhere}
+.ident h1 .nw{white-space:nowrap}
 .ident .role{margin-top:10px;font-size:16px;font-weight:500;color:var(--soft)}
 .ident .role strong{color:#fff;font-weight:700}
 .pitch{margin-top:18px;font-size:18px;font-weight:600;line-height:1.35;max-width:21em}
@@ -330,7 +331,7 @@ footer img{display:block;width:120px;height:auto;margin-bottom:10px;opacity:.85}
    ========================================================= */
 const CONFIG = {
   prenom: "Kader",
-  nom: "Arrouche",
+  nom: "Inter-Resto",
   poste: "Fondateur et dirigeant",
   mobile: "06 22 95 96 08",
   whatsapp: "33622959608",
@@ -373,7 +374,7 @@ const clean = s => String(s).replace(/[<>&"]/g,"");
 const telHref = n => "tel:" + n.replace(/[^\d+]/g,"").replace(/^0/,"+33");
 const fullName = () => [CONFIG.prenom, CONFIG.nom].filter(Boolean).join(" ");
 
-$("#name").textContent = fullName();
+$("#name").innerHTML = [CONFIG.prenom, CONFIG.nom].filter(Boolean).map(w=>`<span class="nw">${clean(w).replace(/-/g,"\u2011")}</span>`).join(" ");
 function renderRole(){ const p=T("poste"); $("#role").innerHTML = p ? clean(p) + " · <strong>Inter Resto</strong>" : T("contact"); }
 
 /* =========================================================
@@ -492,7 +493,7 @@ $("#saveContact").addEventListener("click",async()=>{
   const p=await photoB64(); if(p)V.push(`PHOTO;ENCODING=b;TYPE=JPEG:${p}`);
   V.push("END:VCARD");
   const url=URL.createObjectURL(new Blob([V.join("\r\n")],{type:"text/vcard;charset=utf-8"}));
-  const a=document.createElement("a");a.href=url;a.download=fullName().replace(/\s+/g,"-")+"-Inter-Resto.vcf";
+  const a=document.createElement("a");a.href=url;a.download=fullName().replace(/\s+/g,"-")+(/inter.?resto/i.test(fullName())?"":"-Inter-Resto")+".vcf";
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
   toast(T("toastSaved"));
 });
