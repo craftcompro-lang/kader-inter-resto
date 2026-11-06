@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kader · Inter Resto</title>
-<meta name="description" content="Kader, votre contact Inter Resto. Grossiste alimentaire halal pour la restauration à Wasquehal, Lille et Templemars.">
+<meta name="description" content="Kader, votre contact Inter Resto. Grossiste alimentaire halal pour la restauration à Avelin, Wasquehal, Lille, Templemars et Dunkerque.">
 <meta name="theme-color" content="#14161a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,10 +101,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 h2{font-size:30px;font-weight:900;font-stretch:78%;text-transform:uppercase;line-height:1;letter-spacing:-.005em}
 
 /* magasins */
-.tabs{display:flex;gap:22px;margin-top:16px;overflow-x:auto;scrollbar-width:none}
+.tabs{display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:10px;row-gap:2px;margin-top:16px}
 .tabs::-webkit-scrollbar{display:none}
-.tabs button{flex:none;position:relative;padding:6px 0 10px;font-weight:700;font-size:16px;color:var(--muted);transition:color .15s}
+.tabs button{flex:none;position:relative;padding:6px 0 10px;font-weight:700;font-size:15px;font-stretch:88%;color:var(--muted);transition:color .15s}
 .tabs button[aria-selected="true"]{color:var(--text)}
+@media (max-width:380px){.tabs{column-gap:6px}.tabs button{font-size:13.5px;font-stretch:82%}}
 .tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--red)}
 .map{position:relative;margin-top:14px;aspect-ratio:16/11;border-radius:12px;overflow:hidden;background:#24272d}
 .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -248,7 +249,9 @@ const STORES = [
   { label:"Lille", street:"1 rue Émile Rouzé", city:"59000 Lille",
     hours:{1:H("09:30","13:00","14:00","19:00"),2:H("09:30","13:00","14:00","19:00"),3:H("09:30","13:00","14:00","19:00"),4:H("09:30","13:00","14:00","19:00"),5:H("09:30","13:00","14:00","19:00"),6:H("10:00","19:00"),0:[]} },
   { label:"Templemars", street:"219 rue du Général de Gaulle", city:"59175 Templemars",
-    hours:{1:H("09:30","13:00","14:00","18:00"),2:H("09:30","13:00","14:00","18:00"),3:H("09:30","13:00","14:00","18:00"),4:H("09:30","13:00","14:00","18:00"),5:H("09:00","13:00","14:00","18:30"),6:H("09:00","13:00","14:00","18:30"),0:[]} }
+    hours:{1:H("09:30","13:00","14:00","18:00"),2:H("09:30","13:00","14:00","18:00"),3:H("09:30","13:00","14:00","18:00"),4:H("09:30","13:00","14:00","18:00"),5:H("09:00","13:00","14:00","18:30"),6:H("09:00","13:00","14:00","18:30"),0:[]} },
+  { label:"Dunkerque", street:"57 quai Wilson", city:"59430 Dunkerque", tel:"03 28 25 69 94",
+    hours:{1:H("09:30","19:00"),2:H("09:30","19:00"),3:H("09:30","19:00"),4:H("09:30","19:00"),5:H("09:30","19:00"),6:H("09:30","19:00"),0:H("10:30","19:00")} }
 ];
 
 const SVG = {
@@ -344,7 +347,7 @@ function select(i){
   $("#map").innerHTML=`<iframe title="Carte du magasin de ${s.label}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${q}&z=15&output=embed"></iframe>`;
   $("#addr").innerHTML=`${s.street}${s.hq?'<span class="hq">Siège social</span>':''}<small>${s.city}</small>`;
   $("#goBtn").href=`https://www.google.com/maps/dir/?api=1&destination=${q}`;
-  $("#storeCall").href=telHref(CONFIG.telMagasin);
+  $("#storeCall").href=telHref(s.tel||CONFIG.telMagasin);
   $("#callLbl").textContent=s.hq?"Appeler":"Appeler le magasin";
   $("#todayRow").style.display=s.hq?"none":"";
   if(s.hq){$("#week").classList.remove("show");$("#moreBtn").textContent="Toute la semaine";return;}
