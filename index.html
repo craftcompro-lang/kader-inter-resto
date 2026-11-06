@@ -131,6 +131,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tk-thx{text-align:center;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
 @media (max-width:360px){.ticket{font-size:12px;padding:28px 16px 24px}}
 
+/* ================= PODCAST ================= */
+.pod{display:block;position:relative;margin:56px 0 0;color:#fff}
+.pod-media{position:relative;aspect-ratio:16/10;overflow:hidden}
+.pod-media video,.pod-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 40%}
+.pod-media{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 62%,transparent 100%)}
+.pod-txt{position:relative;margin-top:-64px;padding:0 20px;display:flex;align-items:flex-end;gap:16px}
+.pod-txt .w{flex:1;min-width:0}
+.pod-k{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red-hi)}
+.pod-k i{width:8px;height:8px;border-radius:50%;background:var(--red);animation:rec 1.6s infinite}
+@keyframes rec{0%{box-shadow:0 0 0 0 rgba(228,71,47,.6)}70%{box-shadow:0 0 0 8px rgba(228,71,47,0)}100%{box-shadow:0 0 0 0 rgba(228,71,47,0)}}
+.pod-t{margin-top:6px;font-size:26px;font-weight:900;font-stretch:78%;line-height:1;text-transform:uppercase}
+.pod-s{margin-top:6px;font-size:14px;color:var(--muted)}
+.pod-play{flex:none;width:56px;height:56px;border-radius:50%;background:var(--red);display:grid;place-items:center;transition:transform .2s}
+.pod-play svg{width:22px;height:22px;margin-left:3px}
+.pod:hover .pod-play{transform:scale(1.07)}
+.pod-cta{display:inline-flex;align-items:center;gap:6px;margin:12px 20px 0;font-size:14.5px;font-weight:700;color:var(--blue-hi)}
+@media (prefers-reduced-motion:reduce){.pod-k i{animation:none}}
+
 /* ================= DISTINCTION ================= */
 .awards{display:grid;gap:18px;padding:30px 20px 0}
 .award{display:flex;align-items:center;gap:16px}
@@ -264,6 +282,21 @@ footer img{display:block;width:120px;height:auto;margin-bottom:10px;opacity:.85}
     </div>
   </section>
 
+  <a class="pod" href="https://www.youtube.com/watch?v=tZZEMgn3WTo&amp;t=2724s" target="_blank" rel="noopener" aria-label="Podcast À Table !, épisode 11, sur YouTube" data-i18n-aria="pod_aria">
+    <div class="pod-media">
+      <video id="podVid" src="podcast.mp4" poster="podcast.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    </div>
+    <div class="pod-txt">
+      <div class="w">
+        <span class="pod-k"><i></i><span data-i18n="pod_k">Podcast · À Table !</span></span>
+        <p class="pod-t" data-i18n="pod_t">Faiseur de rois de la street food</p>
+        <p class="pod-s" data-i18n="pod_s">Les Entrepreneurs Affranchis · Épisode 11</p>
+      </div>
+      <span class="pod-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+    </div>
+    <span class="pod-cta"><span data-i18n="pod_cta">Écouter l'extrait sur YouTube</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+  </a>
+
   <section class="sec" aria-labelledby="t-stores">
     <h2 id="t-stores" data-i18n="h_stores">Nos magasins</h2>
     <div class="tabs" role="tablist" id="tabs"></div>
@@ -356,12 +389,12 @@ const UI={
      today:"Aujourd'hui",closed:"Fermé",to:" à ",week:"Toute la semaine",hide:"Masquer",moreCrea:"Voir les 10 créations",less:"Réduire",
      mapTitle:"Carte du magasin de",toastSaved:"Contact prêt à être ajouté",toastCopied:"Lien copié",
      days:["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"],
-     share:"Partager cette carte",nav:"Contacts et réseaux"},
+     share:"Partager cette carte",nav:"Contacts et réseaux",pod_aria:"Podcast À Table !, épisode 11, sur YouTube"},
  en:{poste:"Founder and CEO",contact:'Your contact at <strong>Inter Resto</strong>',call:"Call",callStore:"Call the store",hq:"Headquarters",
      today:"Today",closed:"Closed",to:"–",week:"Full week",hide:"Hide",moreCrea:"See all 10 creations",less:"Show less",
      mapTitle:"Map of the store in",toastSaved:"Contact ready to add",toastCopied:"Link copied",
      days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-     share:"Share this card",nav:"Contacts and social media"}
+     share:"Share this card",nav:"Contacts and social media",pod_aria:"À Table! podcast, episode 11, on YouTube"}
 };
 const EN={
  pitch:'A distributor <span>like no other!</span>',
@@ -392,6 +425,10 @@ const EN={
  tk_total:"28 YEARS",
  tk_group:"Also in the group: <b>IRIS</b>, <b>Tasty by Inter Resto</b>, <b>Inter Intelligence Pictures</b>",
  tk_thx:"Thank you, see you soon!",
+ pod_k:"Podcast · À Table!",
+ pod_t:"Street food kingmaker",
+ pod_s:"Les Entrepreneurs Affranchis · Episode 11 (in French)",
+ pod_cta:"Watch the clip on YouTube",
  h_stores:"Our stores",
  go:"Directions",
  site:"Website and ordering app",
@@ -470,6 +507,12 @@ function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");cl
 
 /* créations : afficher tout */
 const creaLbl=()=>{};
+
+/* podcast : extrait muet en boucle, lu seulement quand il est à l'écran */
+(function(){const v=$("#podVid");if(!v)return;v.muted=true;
+ if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){v.play().catch(()=>{});}else v.pause();}),{threshold:.25});
+ io.observe(v);})();
 
 /* magasins */
 const ORDER=[1,2,3,4,5,6,0];
