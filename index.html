@@ -376,6 +376,7 @@ const SVG = {
 const $ = s => document.querySelector(s);
 const clean = s => String(s).replace(/[<>&"]/g,"");
 const telHref = n => "tel:" + n.replace(/[^\d+]/g,"").replace(/^0/,"+33");
+const CARD_URL = "https://interresto-kader.vercel.app";
 const fullName = () => [CONFIG.prenom, CONFIG.nom].filter(Boolean).join(" ");
 
 $("#name").innerHTML = [CONFIG.prenom, CONFIG.nom].filter(Boolean).map(w=>`<span class="nw">${clean(w).replace(/-/g,"\u2011")}</span>`).join(" ");
@@ -484,10 +485,12 @@ $("#saveContact").addEventListener("click",async()=>{
   const e=s=>String(s).replace(/([,;\\])/g,"\\$1");
   const V=["BEGIN:VCARD","VERSION:3.0",`N:${e(CONFIG.nom)};${e(CONFIG.prenom)};;;`,`FN:${e(fullName())}`,"ORG:Inter Resto"];
   if(CONFIG.poste)V.push(`TITLE:${e(CONFIG.poste)}`);
-  if(CONFIG.mobile)V.push(`TEL;TYPE=CELL:${CONFIG.mobile.replace(/\s/g,"")}`);
-  if(CONFIG.telMagasin)V.push(`TEL;TYPE=WORK:${CONFIG.telMagasin.replace(/\s/g,"")}`);
+  if(CONFIG.mobile)V.push(`TEL;TYPE=CELL:${telHref(CONFIG.mobile).slice(4)}`);
+  if(CONFIG.telMagasin)V.push(`TEL;TYPE=WORK:${telHref(CONFIG.telMagasin).slice(4)}`);
   if(CONFIG.email)V.push(`EMAIL;TYPE=WORK:${CONFIG.email}`);
-  if(CONFIG.site)V.push(`URL:${CONFIG.site}`);
+  V.push(`item1.URL:${CARD_URL}`,`item1.X-ABLabel:${LANG==="en"?"Digital card":"Carte digitale"}`);
+  if(CONFIG.site)V.push(`item2.URL:${CONFIG.site}`,`item2.X-ABLabel:${LANG==="en"?"Website":"Site web"}`);
+  V.push(`NOTE:${e((LANG==="en"?"Kader's digital card: ":"Carte digitale de Kader : ")+CARD_URL)}`);
   STORES.forEach(s=>{const[cp,...v]=s.city.split(" ");V.push(`ADR;TYPE=WORK:;;${e(s.street)};${e(v.join(" "))};;${cp};France`);});
   const p=await photoB64(); if(p)V.push(`PHOTO;ENCODING=b;TYPE=JPEG:${p}`);
   V.push("END:VCARD");
