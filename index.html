@@ -89,6 +89,42 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .site small{display:block;font-size:13.5px;font-weight:500;color:var(--muted)}
 .site svg{width:22px;height:22px;flex:none;color:var(--red-hi)}
 
+/* ================= PARCOURS (CV) ================= */
+.cv .lead{margin-top:10px;font-size:16px;color:var(--soft);line-height:1.45;max-width:24em}
+.big{margin-top:26px}
+.big b{display:block;font-size:84px;font-weight:900;font-stretch:76%;line-height:.85;letter-spacing:-.01em;color:#fff}
+.big b em{font-style:normal;color:var(--red-hi)}
+.big span{display:block;margin-top:10px;font-size:17px;font-weight:700}
+.big small{display:block;margin-top:2px;font-size:14px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;column-gap:22px;row-gap:22px;margin-top:30px}
+.stat{padding-top:12px;border-top:1px solid rgba(255,255,255,.12)}
+.stat b{display:block;font-size:38px;font-weight:900;font-stretch:78%;line-height:1;letter-spacing:-.005em}
+.stat span{display:block;margin-top:5px;font-size:13.5px;line-height:1.35;color:var(--muted)}
+h3{margin-top:46px;font-size:21px;font-weight:900;font-stretch:80%;text-transform:uppercase;letter-spacing:.01em;line-height:1.1}
+.crea{margin-top:14px}
+.crow{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.crea:not(.all) .crow:nth-child(5),.crow:last-child{border-bottom:0}
+.crow .y{font-size:16px;font-weight:900;font-stretch:80%;color:var(--red-hi);line-height:1.4}
+.crow p{font-size:15px;line-height:1.4;font-weight:700;min-width:0}
+.crow p span{display:block;font-weight:400;font-size:13.5px;color:var(--muted);margin-top:1px}
+.crea:not(.all) .crow.extra{display:none}
+.morebtn{margin-top:10px;font-weight:700;font-size:14.5px;color:var(--blue-hi)}
+.path{position:relative;margin-top:18px;padding-left:22px}
+.path::before{content:"";position:absolute;left:4px;top:8px;bottom:8px;width:2px;background:rgba(255,255,255,.12)}
+.step{position:relative;padding-bottom:20px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--muted)}
+.step.now::before{background:var(--red);box-shadow:none}
+.step .d{display:block;font-size:12.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--blue-hi)}
+.step b{display:block;margin-top:3px;font-size:16.5px;font-weight:800;line-height:1.3}
+.step span:not(.d){display:block;margin-top:3px;font-size:14px;line-height:1.4;color:var(--muted)}
+.group{margin-top:14px;display:grid;gap:12px}
+.group p{font-size:15.5px;font-weight:800;line-height:1.3}
+.group p span{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.expert{margin-top:12px;font-size:15.5px;line-height:1.7;color:var(--soft)}
+.expert i{font-style:normal;color:var(--red-hi);padding:0 2px}
+.expert span{white-space:nowrap}
+
 /* ================= DISTINCTION ================= */
 .awards{display:grid;gap:18px;padding:30px 20px 0}
 .award{display:flex;align-items:center;gap:16px}
@@ -190,6 +226,60 @@ footer img{display:block;width:120px;height:auto;margin-bottom:10px;opacity:.85}
     </div>
   </div>
 
+  <section class="sec cv" aria-labelledby="t-cv">
+    <h2 id="t-cv">28 ans de fast-food</h2>
+    <p class="lead">Expert fast-food, créateur produit et fondateur d'Inter Resto. Du comptoir à l'usine, de la recette à la distribution.</p>
+
+    <div class="big">
+      <b>312 <em>M</em></b>
+      <span>pains burger vendus de 2004 à 2017</span>
+      <small>soit 2 millions par mois</small>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>54</b><span>innovations produit depuis 2004</span></div>
+      <div class="stat"><b>40+</b><span>recettes de sauces créées</span></div>
+      <div class="stat"><b>22 ans</b><span>en recherche et développement</span></div>
+      <div class="stat"><b>22+</b><span>camions Inter Resto sur la route chaque jour</span></div>
+      <div class="stat"><b>4</b><span>marchés : France, Belgique, Allemagne, Afrique</span></div>
+      <div class="stat"><b>1998</b><span>ses débuts dans le fast-food</span></div>
+    </div>
+
+    <h3>Créations signature</h3>
+    <div class="crea" id="crea">
+      <div class="crow"><span class="y">2004</span><p>Mega Buns<span>Pain burger de 16 cm</span></p></div>
+      <div class="crow"><span class="y">2005</span><p>Tenders Fried Chicken</p></div>
+      <div class="crow"><span class="y">2005</span><p>Sauce Giants</p></div>
+      <div class="crow"><span class="y">2006</span><p>Nuggets<span>Recette standard grande chaîne</span></p></div>
+      <div class="crow"><span class="y">2010</span><p>Sauce tacos en poche<span>Recette originale, créée dès 2010</span></p></div>
+      <div class="crow extra"><span class="y">2010</span><p>Steaks halal certifiés Achahada<span>Pionnier de la certification chez Rangeland</span></p></div>
+      <div class="crow extra"><span class="y">2012</span><p>Frites Twister<span>Développement pour Lamb Weston</span></p></div>
+      <div class="crow extra"><span class="y">2012-14</span><p>Sauces Magic Grill, Chicken Bacon, Tasty Burger</p></div>
+      <div class="crow extra"><span class="y">2014</span><p>Sauce cheddar en poche</p></div>
+      <div class="crow extra"><span class="y">2017</span><p>Authentic Tasty<span>La marque et sa bouteille noire</span></p></div>
+    </div>
+    <button class="morebtn" id="creaBtn">Voir les 10 créations</button>
+
+    <h3>Parcours</h3>
+    <div class="path">
+      <div class="step now"><span class="d">Depuis 2017</span><b>Fondateur et dirigeant, Inter Resto</b><span>Distribution food service, cash &amp; carry et livraison dans tous les Hauts-de-France</span></div>
+      <div class="step now"><span class="d">Depuis 2004</span><b>Créateur produit et consultant R&amp;D</b><span>Accompagnement des usines : gammes, solutions de production, croissance</span></div>
+      <div class="step"><span class="d">2004 à 2017</span><b>Directeur commercial France, Foster Fast Food</b><span>Distribution d'Americana Buns en France, Belgique, Allemagne et Afrique</span></div>
+      <div class="step"><span class="d">2001 à 2004</span><b>Créateur de la chaîne Daddy Burger</b><span>6 restaurants ouverts</span></div>
+      <div class="step"><span class="d">1998 à 2001</span><b>Manager, Cool Halal</b></div>
+    </div>
+
+    <h3>Le groupe en développement</h3>
+    <div class="group">
+      <p>IRIS<span>SaaS et coaching IA pour restaurateurs</span></p>
+      <p>Tasty by Inter Resto<span>Marque food</span></p>
+      <p>Inter Intelligence Pictures<span>Production vidéo IA</span></p>
+    </div>
+
+    <h3>Expertise</h3>
+    <p class="expert"><span>Concept fast-food</span> <i>/</i> <span>R&amp;D pains et sauces</span> <i>/</i> <span>Industrialisation</span> <i>/</i> <span>Distribution</span> <i>/</i> <span>Design de restaurant</span></p>
+  </section>
+
   <section class="sec" aria-labelledby="t-stores">
     <h2 id="t-stores">Nos magasins</h2>
     <div class="tabs" role="tablist" id="tabs"></div>
@@ -229,7 +319,7 @@ footer img{display:block;width:120px;height:auto;margin-bottom:10px;opacity:.85}
 const CONFIG = {
   prenom: "Kader",
   nom: "Arrouche",
-  poste: "",                       // ex. "Responsable commercial"
+  poste: "Fondateur et dirigeant",
   mobile: "06 22 95 96 08",
   whatsapp: "33622959608",
   email: "kader@inter-resto.fr",
@@ -326,6 +416,9 @@ $("#shareBtn").addEventListener("click",async()=>{
   }catch(err){}
 });
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200);}
+
+/* créations : afficher tout */
+$("#creaBtn").onclick=()=>{const c=$("#crea");c.classList.toggle("all");$("#creaBtn").textContent=c.classList.contains("all")?"Réduire":"Voir les 10 créations";};
 
 /* magasins */
 const DAYS=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"],ORDER=[1,2,3,4,5,6,0];
